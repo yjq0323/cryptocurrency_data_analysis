@@ -22,7 +22,8 @@ client = Client(api_key, api_secret)
 # convert datetime to epoch time in ms
 def datetime_to_timestamp(date_time):
     if type(date_time)==str:
-        timestamp = time.mktime(datetime.datetime.strptime(date_time, "%Y-%m-%d %H:%M:%S").timetuple())*1000
+        date_time_dt = datetime.datetime.strptime(date_time, "%Y-%m-%d %H:%M:%S")
+        timestamp = time.mktime(date_time_dt.timetuple()) * 1000 - 3600000 
     else:
         timestamp = time.mktime(date_time.timetuple())*1000        
     return timestamp
